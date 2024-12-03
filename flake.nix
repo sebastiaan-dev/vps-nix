@@ -12,11 +12,13 @@
         nixosConfigurations = {
             remulus = lib.nixosSystem {
                 modules = [
+                    ./modules/common/configuration.nix
                     ./modules/famesystems/remulus/configuration.nix
                 ];
             };
             romulus = lib.nixosSystem {
                 modules = [
+                    ./modules/common/configuration.nix
                     ./modules/famesystems/romulus/configuration.nix
                 ];
             };
