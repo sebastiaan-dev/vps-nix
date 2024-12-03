@@ -28,17 +28,36 @@
 
   networking = {
     interfaces.ens18 = {
-      ipv4.addresses = [{
-        address = "5.180.254.234";
-        prefixLength  = 27;
-      }];
+      ipv4 = {
+        addresses = [
+          {
+            address = "5.180.254.234";
+            prefixLength  = 27;
+          }
+        ];
+      };
+      
+      ipv6 = {
+        addresses = [
+          {
+            address = "2a0e:6a81:a:11b::";
+            prefixLength = 64;
+          }
+        ];
+      };
     };
+
     defaultGateway = {
       address = "5.180.254.225";
       interface = "ens18";
     };
 
-    nameservers = ["8.8.8.8" "1.1.1.1"];
+    defaultGateway6 = {
+      address = "fe80::1";
+      interface = "ens18";
+    };
+
+    nameservers = ["8.8.8.8" "1.1.1.1" "2001:4860:4860::8888" "2001:4860:4860::8844"];
   };
 
   # Select internationalisation properties.

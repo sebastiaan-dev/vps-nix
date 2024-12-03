@@ -25,7 +25,8 @@
             ];
             packages = with pkgs; [ ];
         };
-
+        
+        # Account for kubernetes
         kubernetes = {
             isNormalUser = true;
             description = "kubernetes";
