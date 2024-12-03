@@ -37,7 +37,7 @@
                 # Only allow public key authentication
                 PasswordAuthentication = false;        
             };
-        }   
+        };
     };
 
     # Global system packages
