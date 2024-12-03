@@ -10,7 +10,7 @@
     };
 
     # Currently do not enable the firewall
-    networking.firewall.enable = {
+    networking.firewall = {
         enable = true;
         allowedTCPPorts = [ ];
         allowedUDPPorts = [ ];
