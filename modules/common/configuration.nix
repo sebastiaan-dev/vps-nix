@@ -15,7 +15,7 @@
         allowedTCPPorts = [ ];
         allowedUDPPorts = [ ];
 
-        allowPing = false;
+        allowPing = true;
     };
 
     # User configuration
