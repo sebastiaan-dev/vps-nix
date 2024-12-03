@@ -10,7 +10,13 @@
     };
 
     # Currently do not enable the firewall
-    networking.firewall.enable = false;
+    networking.firewall.enable = {
+        enable = true;
+        allowedTCPPorts = [ ];
+        allowedUDPPorts = [ ];
+
+        allowPing = false;
+    };
 
     # User configuration
     users.users = {
@@ -25,7 +31,7 @@
             ];
             packages = with pkgs; [ ];
         };
-        
+
         # Account for kubernetes
         kubernetes = {
             isNormalUser = true;
