@@ -1,6 +1,24 @@
 { pkgs, ... }:
 
 {
+	environment.etc."bind/zones/db.lab" = {
+	enable  = true;
+	user    = "named";
+	group   = "named";
+	mode    = "0644";
+	text = ''
+		$TTL    86400
+		@   IN  SOA dns.lab. dev.sebastiaan.io. (
+				2025041601 ; Serial
+				3600       ; Refresh
+				600        ; Retry
+				86400      ; Expire
+				86400 )    ; Minimum
+			IN  NS  dns.lab.
+		dns IN  A   100.115.206.109
+	'';
+	};
+
 	services.bind = {
 		enable = true;
 		directory = "/var/cache/named";
