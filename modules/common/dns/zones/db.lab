@@ -1,0 +1,9 @@
+$TTL    86400
+@       IN      SOA     dns.lab. dev.sebastiaan.io. (
+                        2025041601 ; Serial (YYYYMMDDNN)
+                        3600       ; Refresh
+                        600        ; Retry
+                        86400      ; Expire
+                        86400 )    ; Minimum TTL
+        IN      NS      dns.lab.
+dns     IN      A       100.115.206.109
