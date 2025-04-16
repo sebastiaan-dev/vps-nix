@@ -16,8 +16,8 @@
 			dns = {
 				upstream_dns = [
 					"127.0.0.1:5353" # Bind DNS server
-				]
-			}
+				];
+			};
 		};
 	};
 }
