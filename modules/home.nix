@@ -23,7 +23,7 @@
         syntaxHighlighting.enable = true;
 
         shellAliases = {
-            rebuild = "sudo nixos-rebuild switch --flake /home/sebastiaan/vps-nix/";
+            rebuild = "(cd /home/sebastiaan/vps-nix && git pull && sudo nixos-rebuild switch --flake .)";
         };
     };
 
