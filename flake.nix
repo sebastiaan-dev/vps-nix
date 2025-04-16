@@ -24,7 +24,7 @@
             net-worker-1 = lib.nixosSystem {
                 modules = common ++ [
                     ./modules/oracle/net-worker-1/configuration.nix
-                    ./modules/common/dns.nix
+                    ./modules/common/dns/dns.nix
                     ./modules/common/tailscale.nix
                 ];
             };
