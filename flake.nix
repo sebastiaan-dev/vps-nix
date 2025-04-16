@@ -8,18 +8,24 @@
     outputs = { self, nixpkgs, ... }@inputs: 
     let 
         lib = nixpkgs.lib;
+        common = [ ./modules/common/configuration.nix ];
     in {
         nixosConfigurations = {
             remulus = lib.nixosSystem {
-                modules = [
-                    ./modules/common/configuration.nix
+                modules = common ++ [
                     ./modules/famesystems/remulus/configuration.nix
                 ];
             };
             romulus = lib.nixosSystem {
-                modules = [
-                    ./modules/common/configuration.nix
+                modules = common ++ [
                     ./modules/famesystems/romulus/configuration.nix
+                ];
+            };
+            net-worker-1 = lib.nixosSystem {
+                modules = common ++ [
+                    ./modules/oracle/net-worker-1/configuration.nix
+                    ./modules/common/dns.nix
+                    ./modules/common/tailscale.nix
                 ];
             };
         };

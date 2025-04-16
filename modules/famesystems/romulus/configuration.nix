@@ -40,6 +40,7 @@
       ipv6 = {
         addresses = [
           {
+            # fe80::be24:11ff:fe90:dc8c
             address = "2a0e:6a81:a:11b::";
             prefixLength = 64;
           }
