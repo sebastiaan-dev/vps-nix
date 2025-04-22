@@ -1,6 +1,8 @@
 { config, lib, pkgs, ... }:
 
 {
+    # Allow closed source/paid software.
+    nixpkgs.config.allowUnfree = true;
     # Enable flakes
     nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -40,6 +42,9 @@
         vim
         # Version control
         git
+	# Bitwarden, used to fetch secrets programatically.
+	bws
+	bitwarden-cli
     ];
 
     programs = {

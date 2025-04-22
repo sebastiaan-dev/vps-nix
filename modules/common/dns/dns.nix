@@ -7,15 +7,19 @@
 	group   = "named";
 	mode    = "0644";
 	text = ''
-		$TTL    86400
-		@   IN  SOA dns.lab. dev.sebastiaan.io. (
-				2025041601 ; Serial
-				3600       ; Refresh
-				600        ; Retry
-				86400      ; Expire
-				86400 )    ; Minimum
-			IN  NS  dns.lab.
-		dns IN  A   100.115.206.109
+$TTL    7d
+$ORIGIN lab.
+@	IN	SOA	ns.lab. dev.sebastiaan.io. (
+						2025041902 ; Serial
+						3600       ; Refresh
+						600        ; Retry
+						3w      ; Expire
+						2h )    ; Minimum
+
+	IN	NS	ns.lab.
+
+ns	IN	A	100.115.206.109
+
 	'';
 	};
 
