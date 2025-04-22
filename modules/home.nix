@@ -26,10 +26,10 @@
             rebuild = "(cd /home/sebastiaan/vps-nix && git pull && sudo nixos-rebuild switch --flake .)";
         };
     };
+
 	# GitHub CLI
 	programs.gh = {
 		enable = true;
-		
 	};
 
     # This value determines the home Manager release that your

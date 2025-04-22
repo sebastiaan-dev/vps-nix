@@ -38,13 +38,16 @@
 
     # Global system packages
     environment.systemPackages = with pkgs; [
+        # Nix tools
+        nixfmt-rfc-style 
         # Editor
         vim
         # Version control
         git
-	# Bitwarden, used to fetch secrets programatically.
-	bws
-	bitwarden-cli
+        # Bitwarden, password manager
+        bws
+        # Bitwarden secrets, used to fetch secrets programatically.
+        bitwarden-cli
     ];
 
     programs = {
