@@ -76,7 +76,7 @@
     sops = {
         defaultSopsFile = "../../secrets/default.yaml";
         defaultSopsFormat = "yaml";
-        sops.age.keyFile = "/var/lib/sops-nix/age/key.txt";
-        sops.age.generateKey = true;
+        age.keyFile = "/var/lib/sops-nix/age/key.txt";
+        age.generateKey = true;
     };
 }
