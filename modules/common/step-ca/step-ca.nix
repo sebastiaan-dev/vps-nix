@@ -10,8 +10,13 @@
 
 
   security.acme = {
-    acceptTerms = true; # kinda pointless since we never use upstream
-    certs."ca.lab".server = "https://ca.lab:1443/acme/acme/directory"; # use 1443 here cause bootstrapping loop
+    acceptTerms = true;
+    # Use 1443 here cause bootstrapping loop
+    certs."ca.lab" = {
+      server = "https://ca.lab:1443/acme/acme/directory";
+      webroot = "/var/lib/acme/acme-challenge/";
+    };
+    defaults.email = "dev@sebastiaan.io";
   };
 
   services.nginx = {
@@ -22,7 +27,6 @@
       "ca.lab" = {
         addSSL = true;
         enableACME = false;
-        forceSSL = true;
         locations."/" = {
           proxyPass = "https://localhost:1443";
         };
