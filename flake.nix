@@ -18,7 +18,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, ... }@inputs: 
+    outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs: 
     let 
         lib = nixpkgs.lib;
         common = [ ./modules/common/configuration.nix ];
