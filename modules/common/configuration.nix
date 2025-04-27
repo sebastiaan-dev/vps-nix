@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  secretspath = builtins.toString inputs.mysecrets;
+  secretspath = builtins.toString inputs.self-secrets;
 in
 {
     # Allow closed source/paid software.
