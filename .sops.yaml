@@ -1,7 +1,12 @@
 keys:
-  - &primary age1tysj2hv90pzyze0kclxs8htey3udqlej7cstshqc8v9z8ah3z49se8khu4
+  # Admin accounts
+  - &sebastiaan_net_worker_1 age1l8ul4havjmpsjqsnc3efcs4xapahkffx6tkah02qplu6k4ryncjsn3g95g
+  # Machine accounts
+  - &net_worker_1 age1nxs9wm7mf0nu3h8270jmjw3pl2cuwwfxqqe8px48gqs5l47wuassueasu8
+
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
     key_groups:
       - age:
-        - *primary
+        - *sebastiaan_net_worker_1
+        - *net_worker_1
