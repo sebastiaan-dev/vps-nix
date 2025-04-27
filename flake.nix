@@ -18,7 +18,7 @@
         };
         # Private repository containing secrets
         self-secrets = {
-            url = "git+ssh://git@github.com/sebastiaan-dev/nix-secrets.git?shallow=1";
+            url = "git+ssh://git@github.com/sebastiaan-dev/nix-secrets.git?ref=main&shallow=1";
             flake = false;
         };
     };
