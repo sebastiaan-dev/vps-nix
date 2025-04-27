@@ -23,6 +23,7 @@
         syntaxHighlighting.enable = true;
 
         shellAliases = {
+            # nix flake lock --update-inputs self-secrets
             rebuild = "(cd /home/sebastiaan/vps-nix && git pull && sudo nixos-rebuild switch --flake .)";
             update = "(cd /home/sebastiaan/vps-nix && git pull && sudo nix flake update)";
         };

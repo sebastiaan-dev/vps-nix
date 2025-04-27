@@ -1,5 +1,14 @@
 {config, pkgs, lib, ...}:
 {
+  sops = {
+    secrets = {
+      "network/step-ca/root_crt" = {};
+      "network/step-ca/intermediate_crt" = {};           
+      "network/step-ca/intermediate_key" = {};
+    };
+  };
+
+
   security.acme = {
     acceptTerms = true; # kinda pointless since we never use upstream
     certs."ca.lab".server = "https://ca.lab:1443/acme/acme/directory"; # use 1443 here cause bootstrapping loop
