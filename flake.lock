@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1744743431,
-        "narHash": "sha256-iyn/WBYDc7OtjSawbegINDe/gIkok888kQxk3aVnkgg=",
+        "lastModified": 1745557122,
+        "narHash": "sha256-eqSo9ugzsqhFgaDFYUZj943nurlX4L6f+AW0skJ4W+M=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "c61bfe3ae692f42ce688b5865fac9e0de58e1387",
+        "rev": "dd26f75fb4ec1c731d4b1396eaf4439ce40a91c1",
         "type": "github"
       },
       "original": {
@@ -23,11 +23,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1744440957,
-        "narHash": "sha256-FHlSkNqFmPxPJvy+6fNLaNeWnF1lZSgqVCl/eWaJRc4=",
+        "lastModified": 1745487689,
+        "narHash": "sha256-FQoi3R0NjQeBAsEOo49b5tbDPcJSMWc3QhhaIi9eddw=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "26d499fc9f1d567283d5d56fcf367edd815dba1d",
+        "rev": "5630cf13cceac06cefe9fc607e8dfa8fb342dde3",
         "type": "github"
       },
       "original": {
@@ -48,10 +48,10 @@
     "self-secrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1745770021,
-        "narHash": "sha256-0XBgs6gNU/jYB9RvO5oQGryj9Us4eZyw2KTsR8dhZYA=",
+        "lastModified": 1745786803,
+        "narHash": "sha256-8z+7yR6+KHfgxIgqZSBdU5PumrvfEzY55M5rrCfyPmQ=",
         "ref": "main",
-        "rev": "8c0457c9cceea81924a68dca9fe777aca84e8ba9",
+        "rev": "a3c5ca790cc4f9abe4fc45ab066483963d6d2b3e",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@github.com/sebastiaan-dev/nix-secrets.git"
