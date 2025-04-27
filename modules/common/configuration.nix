@@ -97,7 +97,7 @@ in
                 intermediate_key = {
                     path = "/var/lib/step-ca/intermediate_ca_key";
                 };
-            }
+            };
         };
     };
 }
