@@ -2,6 +2,10 @@
 {
   sops = {
     secrets = {
+      "network/step-ca/keys_password" = {
+        owner = config.systemd.services.step-ca.serviceConfig.User;
+        group = config.systemd.services.step-ca.serviceConfig.Group;
+      };
       "network/step-ca/root_crt" = {
         owner = config.systemd.services.step-ca.serviceConfig.User;
         group = config.systemd.services.step-ca.serviceConfig.Group;
@@ -49,7 +53,7 @@
     address = "0.0.0.0";
     port = 1443;
     # No password for the intermediate CA key.
-    intermediatePasswordFile = "/dev/null";
+    intermediatePasswordFile = config.sops.secrets."network/step-ca/keys_password".path;
 
     # Configurations which produces ca.json.
     # Based on `step ca init` generated ca.json.
