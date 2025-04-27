@@ -32,11 +32,11 @@
     # Configurations which produces ca.json.
     # Based on `step ca init` generated ca.json.
     settings = {
-      root = "/home/ubuntu/.step/certs/root_ca.crt";
+      root = "/var/lib/step-ca/root_ca.crt";
       # We do not trust other CAs, besides our own.
 	    federatedRoots = null;
-	    crt =  "/home/ubuntu/.step/certs/intermediate_ca.crt";
-	    key= "/home/ubuntu/.step/secrets/intermediate_ca_key";
+	    crt =  "/var/lib/step-ca/intermediate_ca.crt";
+	    key= "/var/lib/step-ca/intermediate_ca_key";
       # Disable HTTP server.
 	    insecureAddress = "";
       dnsNames = [

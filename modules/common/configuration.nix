@@ -77,11 +77,27 @@ in
         };
     };
 
+    # System secret configuration
+    # https://0xda.de/blog/2024/07/framework-and-nixos-sops-nix-secrets-management/#installing-sops-nix
     sops = {
         defaultSopsFile = "${secretspath}/secrets/default.yaml";
         defaultSopsFormat = "yaml";
         age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
-        secrets.test = {};
+        secrets.network = {
+            step-ca = {
+                keys_password = {};
+                root_crt = {
+                    path = "/var/lib/step-ca/root_ca.crt";
+                };
+                root_key = {};
+                intermediate_crt = {
+                    path = "/var/lib/step-ca/intermediate_ca.crt";
+                };
+                intermediate_key = {
+                    path = "/var/lib/step-ca/intermediate_ca_key";
+                };
+            }
+        };
     };
 }
