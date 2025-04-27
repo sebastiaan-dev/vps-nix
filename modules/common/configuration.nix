@@ -76,7 +76,7 @@ in
     };
 
     sops = {
-        defaultSopsFile = "${secretspath}/default.yaml";
+        defaultSopsFile = "${secretspath}/secrets/default.yaml";
         defaultSopsFormat = "yaml";
         age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
