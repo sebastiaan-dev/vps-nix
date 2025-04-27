@@ -2,9 +2,18 @@
 {
   sops = {
     secrets = {
-      "network/step-ca/root_crt" = {};
-      "network/step-ca/intermediate_crt" = {};           
-      "network/step-ca/intermediate_key" = {};
+      "network/step-ca/root_crt" = {
+        owner = config.systemd.services.step-ca.serviceConfig.User;
+        group = config.systemd.services.step-ca.serviceConfig.Group;
+      };
+      "network/step-ca/intermediate_crt" = {
+        owner = config.systemd.services.step-ca.serviceConfig.User;
+        group = config.systemd.services.step-ca.serviceConfig.Group;
+      };           
+      "network/step-ca/intermediate_key" = {
+        owner = config.systemd.services.step-ca.serviceConfig.User;
+        group = config.systemd.services.step-ca.serviceConfig.Group;
+      };
     };
   };
 
