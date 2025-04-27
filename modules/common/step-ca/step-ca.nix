@@ -77,6 +77,6 @@
         maxVersion = 1.3;
         renegotiation = false;
       };
-    }
+    };
   };
 }
