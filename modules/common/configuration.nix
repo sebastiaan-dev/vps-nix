@@ -78,5 +78,7 @@
         defaultSopsFormat = "yaml";
         age.keyFile = "/var/lib/sops-nix/age/key.txt";
         age.generateKey = true;
+
+        secrets.example-key = {};
     };
 }
