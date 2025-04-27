@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
-
+let
+  secretspath = builtins.toString inputs.mysecrets;
+in
 {
     # Allow closed source/paid software.
     nixpkgs.config.allowUnfree = true;
@@ -74,7 +76,7 @@
     };
 
     sops = {
-        defaultSopsFile = ../../secrets/default.yaml;
+        defaultSopsFile = "${secretspath}/secrets.yaml";
         defaultSopsFormat = "yaml";
         age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     };

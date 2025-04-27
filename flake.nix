@@ -16,6 +16,11 @@
             url = "github:Mic92/sops-nix";
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        # Private repository containing secrets
+        self-secrets = {
+            url = "git+ssh://git@github.com/sebastiaan-dev/nix-secrets.git?shallow=1";
+            flake = false;
+        };
     };
 
     outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs: 
@@ -35,6 +40,9 @@
                 ];
             };
             net-worker-1 = lib.nixosSystem {
+                specialArgs = {
+                    inherit inputs;
+                };
                 modules = common ++ [
                     sops-nix.nixosModules.sops
                     home-manager.nixosModules.home-manager
