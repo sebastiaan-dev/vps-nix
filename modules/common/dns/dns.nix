@@ -19,6 +19,7 @@ $ORIGIN lab.
 	IN	NS	ns.lab.
 
 ns	IN	A	100.115.206.109
+ca	IN	A	100.115.206.109
 
 	'';
 	};
