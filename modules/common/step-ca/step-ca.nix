@@ -44,7 +44,7 @@
         "ca.lab"
       ];
       logger = {
-        format = "text"
+        format = "text";
       };
       db = {
         type = "badgerv2";
