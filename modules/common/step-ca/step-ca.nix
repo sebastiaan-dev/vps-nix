@@ -26,7 +26,7 @@
     virtualHosts = {
       "ca.lab" = {
         addSSL = true;
-        enableACME = false;
+        enableACME = true;
         locations."/" = {
           proxyPass = "https://localhost:1443";
         };
