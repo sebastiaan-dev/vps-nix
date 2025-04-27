@@ -50,6 +50,8 @@ in
         bws
         # Bitwarden secrets, used to fetch secrets programatically.
         bitwarden-cli
+        # Nix integrated secrets management
+        sops
     ];
 
     programs = {
