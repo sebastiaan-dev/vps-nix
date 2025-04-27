@@ -1,4 +1,4 @@
-{config, pkgs, lib, ...}:
+{ config, pkgs, lib, ... }:
 {
   sops = {
     secrets = {
@@ -45,11 +45,12 @@
     # Configurations which produces ca.json.
     # Based on `step ca init` generated ca.json.
     settings = {
-      root = "/var/lib/step-ca/root_ca.crt";
+      root = config.sops.secrets."network/step-ca/root_crt".path;
       # We do not trust other CAs, besides our own.
 	    federatedRoots = null;
-	    crt =  "/var/lib/step-ca/intermediate_ca.crt";
-	    key= "/var/lib/step-ca/intermediate_ca_key";
+	    crt = config.sops.secrets."network/step-ca/intermediate_crt".path;
+      # We do not trust other CAs, besides our own.
+	    key = config.sops.secrets."network/step-ca/intermediate_key".path;
       # Disable HTTP server.
 	    insecureAddress = "";
       dnsNames = [
