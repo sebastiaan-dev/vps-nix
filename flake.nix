@@ -11,6 +11,11 @@
             # to avoid problems caused by different versions of nixpkgs.
             inputs.nixpkgs.follows = "nixpkgs";
         };
+        # Secret management
+        sops-nix = {
+            url = "github:Mic92/sops-nix";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
     };
 
     outputs = { self, nixpkgs, home-manager, ... }@inputs: 
@@ -31,6 +36,7 @@
             };
             net-worker-1 = lib.nixosSystem {
                 modules = common ++ [
+                    sops-nix.nixosModules.sops
                     home-manager.nixosModules.home-manager
                     {
                         home-manager.useGlobalPkgs = true;
@@ -40,7 +46,7 @@
                     ./modules/oracle/net-worker-1/configuration.nix
                     ./modules/common/dns/dns.nix
                     ./modules/common/tailscale.nix
-                    ./modules/common/step-ca/step-ca.nix
+                    # ./modules/common/step-ca/step-ca.nix
                 ];
             };
         };
