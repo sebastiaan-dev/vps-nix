@@ -54,7 +54,7 @@
                     ./modules/oracle/net-worker-1/configuration.nix
                     ./modules/common/dns/dns.nix
                     ./modules/common/tailscale.nix
-                    ./modules/common/step-ca/step-ca.nix
+                    # ./modules/common/step-ca/step-ca.nix
                 ];
             };
         };
