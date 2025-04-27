@@ -41,7 +41,26 @@
       "inputs": {
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
+        "self-secrets": "self-secrets",
         "sops-nix": "sops-nix"
+      }
+    },
+    "self-secrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1745770021,
+        "narHash": "sha256-0XBgs6gNU/jYB9RvO5oQGryj9Us4eZyw2KTsR8dhZYA=",
+        "ref": "main",
+        "rev": "8c0457c9cceea81924a68dca9fe777aca84e8ba9",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/sebastiaan-dev/nix-secrets.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@github.com/sebastiaan-dev/nix-secrets.git"
       }
     },
     "sops-nix": {
