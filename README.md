@@ -2,6 +2,26 @@
 
 Nix configurations for VPS systems.
 
+## Sops
+
+Generate an age key with
+
+```sh
+nix shell nixpkgs#age -c age-keygen -o ~/.config/sops/age/keys.txt
+```
+
+Derive the public key
+
+```sh
+nix shell nixpkgs#age -c age-keygen -y ~/.config/sops/age/keys.txt
+```
+
+Go into the secrets directory (`secrets`) and run
+
+```sh
+sops secrets.yaml
+```
+
 ## Usage
 
 An update can be applied by executing the command below on the target machine:
