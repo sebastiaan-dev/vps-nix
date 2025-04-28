@@ -14,7 +14,9 @@ in
     };
 
     sops.secrets = { 
-        "network/step-ca/root_crt" = {};
+        "network/step-ca/root_crt" = {
+            neededForBoot = true;
+        };
     };
 
     security.pki.certificateFiles = [
