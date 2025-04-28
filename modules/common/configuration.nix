@@ -15,7 +15,7 @@ in
 
     sops.secrets = { 
         "network/step-ca/root_crt" = {
-            neededForBoot = true;
+            neededForUsers = true;
         };
     };
 
