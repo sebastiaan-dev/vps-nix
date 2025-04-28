@@ -23,8 +23,8 @@ in
     networking.firewall = {
         enable = true;
 
-        allowedTCPPorts = [ ];
-        allowedUDPPorts = [ ];
+        # allowedTCPPorts = [ ];
+        # allowedUDPPorts = [ ];
 
         allowPing = true;
     };
