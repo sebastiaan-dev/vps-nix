@@ -43,7 +43,7 @@ ca	IN	A	100.115.206.109
         addSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass = "https://localhost:3000";
+          proxyPass = "http://localhost:3000";
         };
       };
     };
