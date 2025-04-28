@@ -13,14 +13,8 @@ in
 	    wheelNeedsPassword = false;
     };
 
-    sops.secrets = { 
-        "network/step-ca/root_crt" = {
-            neededForUsers = true;
-        };
-    };
-
     security.pki.certificateFiles = [
-        config.sops.secrets."network/step-ca/root_crt".path
+        "certs/roots.pem"
     ];
 
     time.timeZone = "Europe/Amsterdam";
