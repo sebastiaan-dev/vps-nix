@@ -28,7 +28,7 @@ ca	IN	A	100.115.206.109
     acceptTerms = true;
     # Use 1443 here cause bootstrapping loop
     certs."ns.lab" = {
-      server = "https://ca.lab:1443/acme/acme/directory";
+      server = "https://ca.lab/acme/acme/directory";
       webroot = "/var/lib/acme/acme-challenge/";
     };
     defaults.email = "dev@sebastiaan.io";
