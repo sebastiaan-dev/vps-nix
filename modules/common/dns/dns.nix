@@ -57,10 +57,11 @@ ca	IN	A	100.115.206.109
 	
 	services.adguardhome = {
 		enable = true;
-		host = "127.0.0.1";
-		port = 3000;
 
 		settings = {
+			http = {
+				address = "127.0.0.1"
+			};
 			dns = {
 				upstream_dns = [
 					"127.0.0.1:5353" # Bind DNS server
