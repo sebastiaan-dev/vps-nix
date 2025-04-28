@@ -24,6 +24,21 @@ ca	IN	A	100.115.206.109
 	'';
 	};
 
+	services.nginx = {
+    enable = true;
+    recommendedProxySettings = true;
+
+    virtualHosts = {
+      "ns.lab" = {
+        addSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass = "https://localhost:3000";
+        };
+      };
+    };
+  };
+
 	services.bind = {
 		enable = true;
 		directory = "/var/cache/named";
