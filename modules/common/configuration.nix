@@ -14,7 +14,7 @@ in
     };
 
     security.pki.certificateFiles = [
-        "certs/roots.pem"
+        certs/roots.pem
     ];
 
     time.timeZone = "Europe/Amsterdam";
