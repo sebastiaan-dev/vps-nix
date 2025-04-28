@@ -57,7 +57,7 @@ ca	IN	A	100.115.206.109
 	
 	services.adguardhome = {
 		enable = true;
-		host = "0.0.0.0";
+		host = "127.0.0.1";
 		port = 3000;
 
 		settings = {
