@@ -13,6 +13,14 @@ in
 	    wheelNeedsPassword = false;
     };
 
+    sops.secrets = { 
+        "network/step-ca/root_crt" = {};
+    };
+
+    security.pki.certificateFiles = [
+        config.sops.secrets."network/step-ca/root_crt".path
+    ];
+
     time.timeZone = "Europe/Amsterdam";
     i18n.defaultLocale = "en_US.UTF-8";
 
