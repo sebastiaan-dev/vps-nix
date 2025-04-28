@@ -44,7 +44,7 @@
             allowedUDPPorts = [ config.services.tailscale.port 53 ];
             # Open up the HTTP and HTTPS ports
             # Allow SSH
-            allowedTCPPorts = [ 22 80 443 config.services.adguardhome.port ];
+            allowedTCPPorts = [ 22 80 443 ];
         };
     };
 
