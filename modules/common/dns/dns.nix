@@ -60,7 +60,7 @@ ca	IN	A	100.115.206.109
 
 		settings = {
 			http = {
-				address = "127.0.0.1"
+				address = "127.0.0.1";
 			};
 			dns = {
 				upstream_dns = [
