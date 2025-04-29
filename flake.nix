@@ -34,16 +34,6 @@
         common = [ ./modules/common/configuration.nix ];
     in {
         nixosConfigurations = {
-            remulus = lib.nixosSystem {
-                modules = common ++ [
-                    ./modules/famesystems/remulus/configuration.nix
-                ];
-            };
-            romulus = lib.nixosSystem {
-                modules = common ++ [
-                    ./modules/famesystems/romulus/configuration.nix
-                ];
-            };
             net-worker-1 = lib.nixosSystem {
                 specialArgs = {
                     inherit inputs;
