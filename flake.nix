@@ -3,6 +3,11 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+        # Disk manager
+        disko = {
+            url = "github:nix-community/disko";
+            inputs.nixpkgs.follows = "nixpkgs";
+        };
         home-manager = {
             url = "github:nix-community/home-manager/release-24.11";
             # The `follows` keyword in inputs is used for inheritance.
@@ -23,7 +28,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, home-manager, sops-nix, ... }@inputs: 
+    outputs = { self, nixpkgs, disko, home-manager, sops-nix, ... }@inputs: 
     let 
         lib = nixpkgs.lib;
         common = [ ./modules/common/configuration.nix ];
@@ -62,6 +67,7 @@
                     inherit inputs;
                 };
                 modules = common ++ [
+                    disko.nixosModules.disko
                     sops-nix.nixosModules.sops
                     home-manager.nixosModules.home-manager
                     {
