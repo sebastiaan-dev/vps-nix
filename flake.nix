@@ -58,6 +58,7 @@
                     inherit inputs;
                 };
                 modules = common ++ [
+                    ./hardware-configuration.nix
                     disko.nixosModules.disko
                     sops-nix.nixosModules.sops
                     home-manager.nixosModules.home-manager
