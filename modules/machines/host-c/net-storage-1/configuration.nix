@@ -25,20 +25,20 @@
     services.getty.autologinUser = null;
     # Open ports in the firewall.
     networking = {
-        hostName = "net-worker-2";
+        hostName = "net-storage-1";
         # Dynamically configure networking
         networkmanager.enable = true;
 
         firewall = {
             # Always allow traffic from your Tailscale network
-            trustedInterfaces = [ "tailscale0" ];
+            # trustedInterfaces = [ "tailscale0" ];
 
             # Allow the Tailscale UDP port
             # Allow the DNS UDP port
-            allowedUDPPorts = [ config.services.tailscale.port 53 ];
+            # allowedUDPPorts = [ config.services.tailscale.port 53 ];
             # Open up the HTTP and HTTPS ports
             # Allow SSH
-            allowedTCPPorts = [ 22 80 443 ];
+            # allowedTCPPorts = [ 22 80 443 ];
         };
     };
 

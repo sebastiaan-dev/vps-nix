@@ -26,7 +26,7 @@
     services.getty.autologinUser = null;
     # Open ports in the firewall.
     networking = {
-        hostName = "net-storage-1";
+        hostName = "net-worker-2";
         # Dynamically configure networking
         networkmanager.enable = true;
 
