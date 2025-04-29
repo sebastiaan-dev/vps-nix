@@ -53,6 +53,7 @@
                 ];
             };
             net-worker-2 = lib.nixosSystem {
+                system = "aarch64-linux";
                 specialArgs = {
                     inherit inputs;
                 };
