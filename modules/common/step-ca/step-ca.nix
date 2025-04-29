@@ -1,5 +1,8 @@
 { config, pkgs, lib, ... }:
 {
+  # Reference
+  # - https://www.apalrd.net/posts/2023/network_acme/
+  
   sops = {
     secrets = {
       "network/step-ca/keys_password" = {

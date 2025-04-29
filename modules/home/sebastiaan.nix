@@ -6,6 +6,8 @@
         homeDirectory = "/home/sebastiaan";
     };
 
+    # Reference
+    # - https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-writeShellApplication
     home.packages = with pkgs; [ 
         (writeShellApplication {
             name = "rebuild";

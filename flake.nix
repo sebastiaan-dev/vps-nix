@@ -1,4 +1,7 @@
 {
+    # Reference
+    # - https://nixos-and-flakes.thiscute.world/
+
     description = "NixOS configuration";
 
     inputs = {
@@ -58,8 +61,9 @@
                     inherit inputs;
                 };
                 modules = common ++ [
-                    ./hardware-configuration.nix
                     disko.nixosModules.disko
+                    ./hardware-configuration.nix
+                    ./modules/oracle/net-worker-2/configuration.nix
                     sops-nix.nixosModules.sops
                     home-manager.nixosModules.home-manager
                     {
@@ -67,7 +71,6 @@
                         home-manager.useUserPackages = true;
                         home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
-                    ./modules/oracle/net-worker-2/configuration.nix
                 ];
             };
         };

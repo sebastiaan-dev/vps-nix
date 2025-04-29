@@ -32,8 +32,9 @@ ca	IN	A	100.115.206.109
       webroot = "/var/lib/acme/acme-challenge/";
     };
     defaults.email = "dev@sebastiaan.io";
-  };
+  };	
 
+	# Should be protected by a firewall
 	services.nginx = {
     enable = true;
     recommendedProxySettings = true;

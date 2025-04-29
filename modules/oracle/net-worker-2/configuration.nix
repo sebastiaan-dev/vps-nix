@@ -1,9 +1,11 @@
-{ config, lib, pkgs, ... }:
+{ modulesPath, config, lib, pkgs, ... }:
 
 {
     imports =
     [
-        ./disk-config.nix
+      (modulesPath + "/installer/scan/not-detected.nix")
+      (modulesPath + "/profiles/qemu-guest.nix")
+      ./disk-config.nix
     ];
 
     boot.loader.grub = {
@@ -29,7 +31,7 @@
 
         firewall = {
             # Always allow traffic from your Tailscale network
-            trustedInterfaces = [ "tailscale0" ];
+            # trustedInterfaces = [ "tailscale0" ];
 
             # Allow the Tailscale UDP port
             # Allow the DNS UDP port
@@ -41,6 +43,7 @@
     };
 
     # Temporary SSH key for the server
+    services.openssh.enable = true;
     users.users.root.openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgVZaJkRdvGhG1zbXq0EIyDGItvLql88/cDSEJL2Ry4 dev@sebastiaan.io"
     ];
