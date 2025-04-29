@@ -17,7 +17,7 @@
             text = ''
                 update_secrets=false
 
-                if [[ "$1" == "--update" ]]; then
+                if [[ "''${1:-}" == "--update" ]]; then
                     update_secrets=true
                     shift
                 fi
@@ -26,7 +26,7 @@
                 git pull
 
                 if $update_secrets; then
-                    nix flake lock --update-inputs self-secrets
+                    nix flake lock --update-input self-secrets
                 fi
 
                 sudo nixos-rebuild switch --flake .;
