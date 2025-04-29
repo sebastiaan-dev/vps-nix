@@ -6,37 +6,41 @@
         homeDirectory = "/home/sebastiaan";
     };
 
-    pkgs.writeShellApplication = {
-        name = "rebuildv2";
-        runtimeInputs = with pkgs; [
-            git
-            nix
-            sudo
-        ];
-        text = ''
-            update_secrets=false
+    home.packages = with pkgs; [ 
+        (writeShellApplication {
+            name = "rebuildv2";
+            runtimeInputs = [
+                git
+                nix
+                sudo
+            ];
+            text = ''
+                update_secrets=false
 
-            if [[ "$1" == "--update" ]]; then
-                update_secrets=true
-                shift
-            fi
+                if [[ "$1" == "--update" ]]; then
+                    update_secrets=true
+                    shift
+                fi
 
-            cd /home/sebastiaan/vps-nix
-            git pull
+                cd /home/sebastiaan/vps-nix
+                git pull
 
-            if $update_secrets; then
-                nix flake lock --update-inputs self-secrets
-            fi
+                if $update_secrets; then
+                    nix flake lock --update-inputs self-secrets
+                fi
 
-            sudo nixos-rebuild switch --flake .;
+                sudo nixos-rebuild switch --flake .;
 
-            if ! git diff --quiet -- flake.lock || ! git diff --cached --quiet -- flake.lock; then
-                git add flake.lock
-                git commit -m "chore: Update flake.lock"
-                git push
-            fi
-        '';
-    };
+                if ! git diff --quiet -- flake.lock || ! git diff --cached --quiet -- flake.lock; then
+                    git add flake.lock
+                    git commit -m "chore: Update flake.lock"
+                    git push
+                fi
+            '';
+        })
+    ];
+
+    
 
     programs.git = {
         enable = true;
