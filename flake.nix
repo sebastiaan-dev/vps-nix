@@ -57,6 +57,21 @@
                     ./modules/common/step-ca/step-ca.nix
                 ];
             };
+            net-worker-2 = lib.nixosSystem {
+                specialArgs = {
+                    inherit inputs;
+                };
+                modules = common ++ [
+                    sops-nix.nixosModules.sops
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
+                    }
+                    ./modules/oracle/net-worker-2/configuration.nix
+                ];
+            };
         };
     };
 }
