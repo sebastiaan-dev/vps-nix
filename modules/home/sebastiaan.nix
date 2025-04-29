@@ -8,7 +8,7 @@
 
     home.packages = with pkgs; [ 
         (writeShellApplication {
-            name = "rebuildv2";
+            name = "rebuild";
             runtimeInputs = [
                 git
                 nix
@@ -25,7 +25,7 @@
                 git pull
 
                 if $update_secrets; then
-                    nix flake lock --update-input self-secrets
+                    nix flake update self-secrets
                 fi
 
                 nixos-rebuild switch --flake .;
@@ -35,6 +35,18 @@
                     git commit -m "chore: Update flake.lock"
                     git push
                 fi
+            '';
+        })
+        (writeShellApplication {
+            name = "update";
+            runtimeInputs = [
+                git
+                nix
+            ];
+            text = ''
+                cd /home/sebastiaan/vps-nix
+                git pull
+                nix flake update
             '';
         })
     ];
@@ -56,11 +68,6 @@
         enableCompletion = true;
         autosuggestion.enable = true;
         syntaxHighlighting.enable = true;
-
-        shellAliases = {
-            rebuild = "(cd /home/sebastiaan/vps-nix && git pull && sudo nixos-rebuild switch --flake .)";
-            update = "(cd /home/sebastiaan/vps-nix && git pull && sudo nix flake update)";
-        };
     };
 
 	# GitHub CLI
