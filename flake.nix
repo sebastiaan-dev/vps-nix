@@ -69,6 +69,7 @@
                         home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
                     ./modules/oracle/net-worker-2/configuration.nix
+                    ./modules/common/tailscale.nix
                 ];
             };
         };

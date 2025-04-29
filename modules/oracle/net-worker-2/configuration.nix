@@ -32,14 +32,14 @@
 
         firewall = {
             # Always allow traffic from your Tailscale network
-            # trustedInterfaces = [ "tailscale0" ];
+            trustedInterfaces = [ "tailscale0" ];
 
             # Allow the Tailscale UDP port
             # Allow the DNS UDP port
-            # allowedUDPPorts = [ config.services.tailscale.port 53 ];
+            allowedUDPPorts = [ config.services.tailscale.port 53 ];
             # Open up the HTTP and HTTPS ports
             # Allow SSH
-            # allowedTCPPorts = [ 22 80 443 ];
+            allowedTCPPorts = [ 22 80 443 ];
         };
     };
 
