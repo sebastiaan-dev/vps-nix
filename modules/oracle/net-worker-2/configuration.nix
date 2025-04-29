@@ -42,12 +42,6 @@
         };
     };
 
-    # Temporary SSH key for the server
-    services.openssh.enable = true;
-    users.users.root.openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgVZaJkRdvGhG1zbXq0EIyDGItvLql88/cDSEJL2Ry4 dev@sebastiaan.io"
-    ];
-
     # This option defines the first version of NixOS you have installed on this particular machine,
     # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
     #
