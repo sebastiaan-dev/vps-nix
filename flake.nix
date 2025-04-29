@@ -49,7 +49,7 @@
                         home-manager.useUserPackages = true;
                         home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
-                    ./modules/oracle/net-worker-1/configuration.nix
+                    ./modules/machines/oracle/net-worker-1/configuration.nix
                     ./modules/common/dns/dns.nix
                     ./modules/common/tailscale.nix
                     ./modules/common/step-ca/step-ca.nix
@@ -68,8 +68,26 @@
                         home-manager.useUserPackages = true;
                         home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
-                    ./modules/oracle/net-worker-2/configuration.nix
+                    ./modules/machines/oracle/net-worker-2/configuration.nix
                     ./modules/common/tailscale.nix
+                ];
+            };
+            net-storage-1 = lib.nixosSystem {
+                specialArgs = {
+                    inherit inputs;
+                };
+                modules = common ++ [
+                    disko.nixosModules.disko
+                    sops-nix.nixosModules.sops
+                    home-manager.nixosModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
+                    }
+                    ./modules/machines/oracle/net-storage-1/configuration.nix
+                    ./hardware-configuration.nix
+                    # ./modules/common/tailscale.nix
                 ];
             };
         };

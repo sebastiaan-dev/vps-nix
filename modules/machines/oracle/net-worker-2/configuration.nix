@@ -26,7 +26,7 @@
     services.getty.autologinUser = null;
     # Open ports in the firewall.
     networking = {
-        hostName = "net-worker-2";
+        hostName = "net-storage-1";
         # Dynamically configure networking
         networkmanager.enable = true;
 
@@ -36,12 +36,17 @@
 
             # Allow the Tailscale UDP port
             # Allow the DNS UDP port
-            allowedUDPPorts = [ config.services.tailscale.port 53 ];
+            # allowedUDPPorts = [ config.services.tailscale.port 53 ];
             # Open up the HTTP and HTTPS ports
             # Allow SSH
-            allowedTCPPorts = [ 22 80 443 ];
+            # allowedTCPPorts = [ 22 80 443 ];
         };
     };
+
+    users.users.root.openssh.authorizedKeys.keys = [
+      # change this to your ssh key
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgVZaJkRdvGhG1zbXq0EIyDGItvLql88/cDSEJL2Ry4 dev@sebastiaan.io"
+    ];
 
     # This option defines the first version of NixOS you have installed on this particular machine,
     # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
