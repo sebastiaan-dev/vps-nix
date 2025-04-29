@@ -56,14 +56,11 @@
                 ];
             };
             net-worker-2 = lib.nixosSystem {
-                system = "aarch64-linux";
                 specialArgs = {
                     inherit inputs;
                 };
                 modules = common ++ [
                     disko.nixosModules.disko
-                    ./hardware-configuration.nix
-                    ./modules/oracle/net-worker-2/configuration.nix
                     sops-nix.nixosModules.sops
                     home-manager.nixosModules.home-manager
                     {
@@ -71,6 +68,7 @@
                         home-manager.useUserPackages = true;
                         home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
+                    ./modules/oracle/net-worker-2/configuration.nix
                 ];
             };
         };
