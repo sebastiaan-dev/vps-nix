@@ -12,7 +12,6 @@
             runtimeInputs = [
                 git
                 nix
-                sudo
             ];
             text = ''
                 update_secrets=false
@@ -29,7 +28,7 @@
                     nix flake lock --update-input self-secrets
                 fi
 
-                sudo nixos-rebuild switch --flake .;
+                nixos-rebuild switch --flake .;
 
                 if ! git diff --quiet -- flake.lock || ! git diff --cached --quiet -- flake.lock; then
                     git add flake.lock
