@@ -3,6 +3,7 @@
 {
     imports =
     [
+      ./hardware-configuration.nix
       (modulesPath + "/installer/scan/not-detected.nix")
       (modulesPath + "/profiles/qemu-guest.nix")
       ./disk-config.nix
@@ -31,22 +32,16 @@
 
         firewall = {
             # Always allow traffic from your Tailscale network
-            # trustedInterfaces = [ "tailscale0" ];
+            trustedInterfaces = [ "tailscale0" ];
 
             # Allow the Tailscale UDP port
             # Allow the DNS UDP port
-            # allowedUDPPorts = [ config.services.tailscale.port 53 ];
+            allowedUDPPorts = [ config.services.tailscale.port 53 ];
             # Open up the HTTP and HTTPS ports
             # Allow SSH
-            # allowedTCPPorts = [ 22 80 443 ];
+            allowedTCPPorts = [ 22 80 443 ];
         };
     };
-
-    # Temporary SSH key for the server
-    services.openssh.enable = true;
-    users.users.root.openssh.authorizedKeys.keys = [
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgVZaJkRdvGhG1zbXq0EIyDGItvLql88/cDSEJL2Ry4 dev@sebastiaan.io"
-    ];
 
     # This option defines the first version of NixOS you have installed on this particular machine,
     # and is used to maintain compatibility with application data (e.g. databases) created on older NixOS versions.
