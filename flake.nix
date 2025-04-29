@@ -49,7 +49,7 @@
                     {
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.sebastiaan = import ./modules/home.nix;
+                        home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
                     ./modules/oracle/net-worker-1/configuration.nix
                     ./modules/common/dns/dns.nix
