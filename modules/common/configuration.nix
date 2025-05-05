@@ -88,4 +88,18 @@ in
         defaultSopsFormat = "yaml";
         age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
     };
+
+    # Temporary
+    virtualisation.oci-containers = { 
+        backend = "docker";
+        containers = {
+            "hosted-firefox" = {
+                image = "lscr.io/linuxserver/firefox:latest";
+                ports = [
+                    "3200:3000"
+                    "3201:3001"
+                ];
+            };
+        };
+    };
 }
