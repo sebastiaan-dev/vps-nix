@@ -94,7 +94,8 @@ in
         backend = "docker";
         containers = {
             "hosted-firefox" = {
-                image = "lscr.io/linuxserver/firefox:latest";
+                autoStart = true;
+                image = "lscr.io/linuxserver/firefox";
                 ports = [
                     "3200:3000"
                     "3201:3001"
