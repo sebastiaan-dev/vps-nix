@@ -34,30 +34,30 @@
           };
         };
       };
-      lvm_vg = {
-        pool = {
-          type = "lvm_vg";
-          lvs = {
-            root = {
-              size = "100%FREE";
-              content = {
-                type = "filesystem";
-                format = "ext4";
-                mountpoint = "/";
-                mountOptions = [
-                  "defaults"
-                ];
-              };
-            };
-          };
-        };
-      };
       disk2 = {
         device = lib.mkDefault "/dev/sda";
         type = "disk";
         content = {
           type = "zfs";
           pool = "zroot";
+        };
+      };
+    };
+    lvm_vg = {
+      pool = {
+        type = "lvm_vg";
+        lvs = {
+          root = {
+            size = "100%FREE";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/";
+              mountOptions = [
+                "defaults"
+              ];
+            };
+          };
         };
       };
     };
