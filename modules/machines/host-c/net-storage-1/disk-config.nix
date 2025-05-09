@@ -70,7 +70,7 @@
           compression = "zstd";
           "com.sun:auto-snapshot" = "false";
         };
-        mountpoint = "none";
+        mountpoint = "/mnt/pool";
         postCreateHook = "zfs list -t snapshot -H -o name | grep -E '^zroot@blank$' || zfs snapshot zroot@blank";
 
         datasets = {
@@ -81,13 +81,11 @@
 
           "root/home" = {
             type = "zfs_fs";
-            mountpoint = "/mnt/home";
             options."com.sun:auto-snapshot" = "true"; # Snapshots enabled for user data
           };
 
           "root/persist" = {
             type = "zfs_fs";
-            mountpoint = "/mnt/persist";
             options."com.sun:auto-snapshot" = "true"; # Snapshots enabled for persistent data
           };
         };
