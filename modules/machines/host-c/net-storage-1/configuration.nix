@@ -8,6 +8,7 @@
       ./disk-config.nix
     ];
 
+    boot.supportedFilesystems = [ "zfs" ];
     boot.loader.grub = {
       efiSupport = true;
       efiInstallAsRemovable = true;
@@ -25,6 +26,7 @@
     services.getty.autologinUser = null;
     # Open ports in the firewall.
     networking = {
+        hostId = "0654186d"; # From head -c 8 /etc/machine-id
         hostName = "net-storage-1";
         # Dynamically configure networking
         networkmanager.enable = true;
