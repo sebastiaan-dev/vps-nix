@@ -45,3 +45,4 @@ This generates or updates the `flake.lock` file, which should be committed to th
 - Close of NGINX services from the public web, either through firewall or by setting trusted nginx IPs?
 - Fix use of sudo git
 - Fix tailscale auth key
+
