@@ -87,7 +87,6 @@
                         home-manager.users.sebastiaan = import ./modules/home/sebastiaan.nix;
                     }
                     ./modules/machines/host-c/net-storage-1/configuration.nix
-                    ./hardware-configuration.nix
                     # ./modules/common/tailscale.nix
                 ];
             };
