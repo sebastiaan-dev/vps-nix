@@ -9,7 +9,7 @@
     ];
 
     boot.supportedFilesystems = [ "zfs" ];
-    boot.loader.grub.device = "/dev/sdb";
+    boot.loader.grub.enable = true;
     boot.loader.grub.mirroredBoots = []; 
 
     systemd.targets.multi-user.enable = true;
