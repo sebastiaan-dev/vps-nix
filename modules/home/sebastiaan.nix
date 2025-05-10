@@ -9,6 +9,7 @@
     # Reference
     # - https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-writeShellApplication
     home.packages = with pkgs; [ 
+        tmux
         (writeShellApplication {
             name = "rebuild";
             runtimeInputs = [
