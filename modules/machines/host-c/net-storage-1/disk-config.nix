@@ -61,13 +61,13 @@
 
           "root/home" = {
             type = "zfs_fs";
-            mountpoint = "/mnt/home";
+            options.mountpoint = "/mnt/home";
             options."com.sun:auto-snapshot" = "true"; # Snapshots enabled for user data
           };
 
           "root/persist" = {
             type = "zfs_fs";
-            mountpoint = "/mnt/persist";
+            options.mountpoint = "/mnt/persist";
             options."com.sun:auto-snapshot" = "true"; # Snapshots enabled for persistent data
           };
         };
