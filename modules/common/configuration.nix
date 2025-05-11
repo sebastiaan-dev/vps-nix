@@ -51,13 +51,17 @@ in
         # Version control
         git
         # Bitwarden, password manager
-        # bws
+        bws
         # Bitwarden secrets, used to fetch secrets programatically.
-        # bitwarden-cli
+        bitwarden-cli
         # Nix integrated secrets management
         sops
         # Interactive disk usage analyzer
         ncdu
+        # Terminal multiplexer
+        tmux
+        # `cat` command with syntax highlighting
+        bat
     ];
 
     programs = {
