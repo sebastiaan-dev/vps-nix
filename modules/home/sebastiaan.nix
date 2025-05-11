@@ -72,6 +72,10 @@
         syntaxHighlighting.enable = true;
     };
 
+    programs.neovim = {
+        enable = true;
+    };
+
 	# GitHub CLI
 	programs.gh = {
 		enable = true;
