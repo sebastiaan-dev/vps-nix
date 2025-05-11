@@ -85,7 +85,7 @@ in
   system.activationScripts.zfsDatasetPerms = lib.mkAfter ''
     for m in ${lib.concatStringsSep " " datasetMounts}; do
       echo "Setting group ownership and permissions on ZFS dataset $m"
-      ${pkgs.coreutils}/bin/chown root:sudo "$m"
+      ${pkgs.coreutils}/bin/chown root:wheel "$m"
       ${pkgs.coreutils}/bin/chmod 2770 "$m"
     done
   '';
