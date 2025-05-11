@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ pkgs, lib, ... }:
 let
   datasetMounts = [
     "/mnt/home"
