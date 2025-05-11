@@ -56,6 +56,8 @@ in
         # bitwarden-cli
         # Nix integrated secrets management
         sops
+        # Interactive disk usage analyzer
+        ncdu
     ];
 
     programs = {
