@@ -8,7 +8,8 @@
 
     # Reference
     # - https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-writeShellApplication
-    home.packages = with pkgs; [ 
+    home.packages = with pkgs; [
+        lazygit
         (writeShellApplication {
             name = "rebuild";
             runtimeInputs = [
