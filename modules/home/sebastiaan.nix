@@ -10,6 +10,20 @@
     # - https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-writeShellApplication
     home.packages = with pkgs; [
         lazygit
+        # Cheatsheet
+        navi
+        # Command runner
+        just
+        # Task manager
+        taskwarrior3
+        # Code snippets
+        nap
+        # Logfile navigator
+        lnav
+        # Kubernetes cluster manager
+        k9s
+        # File browser
+        nnn
         (writeShellApplication {
             name = "rebuild";
             runtimeInputs = [
