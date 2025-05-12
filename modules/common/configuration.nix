@@ -62,6 +62,8 @@ in
         tmux
         # `cat` command with syntax highlighting
         bat
+        # Developer environment manager
+        devenv
     ];
 
     programs = {
