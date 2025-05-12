@@ -85,6 +85,12 @@
     # Zoxide is a smart cd command that learns your habits
     programs.zoxide.enable = true;
 
+    programs.direnv = {
+      enable = true;
+      enableZshIntegration = true; # see note on other shells below
+      nix-direnv.enable = true;
+    };
+
     # This value determines the home Manager release that your
     # configuration is compatible with. This helps avoid breakage
     # when a new home Manager release introduces backwards
