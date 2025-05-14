@@ -6,7 +6,9 @@
 
     inputs = {
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
-        # Disk manager
+        nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    	nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+	# Disk manager
         disko = {
             url = "github:nix-community/disko";
             inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +33,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, disko, home-manager, sops-nix, ... }@inputs: 
+    outputs = { self, nixpkgs, nix-darwin, disko, home-manager, sops-nix, ... }@inputs: 
     let 
         lib = nixpkgs.lib;
         common = [ ./modules/common/configuration.nix ];
@@ -91,5 +93,21 @@
                 ];
             };
         };
+
+	darwinConfigurations."Sebastiaans-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      		specialArgs = {
+                    inherit inputs;
+                };
+		modules = [
+                    sops-nix.darwinModules.sops
+                    home-manager.darwinModules.home-manager
+                    {
+                        home-manager.useGlobalPkgs = true;
+                        home-manager.useUserPackages = true;
+                        home-manager.users.sebastiaan = import ./modules/home/sebastiaan-darwin.nix;
+                    }
+		    ./modules/machines/apple/macbook-pro/configuration.nix
+		];
+    	};
     };
 }
