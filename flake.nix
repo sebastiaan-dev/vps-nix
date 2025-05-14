@@ -8,6 +8,19 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
         nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
     	nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+	nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+mac-app-util.url = "github:hraban/mac-app-util";
+
 	# Disk manager
         disko = {
             url = "github:nix-community/disko";
@@ -33,7 +46,7 @@
         };
     };
 
-    outputs = { self, nixpkgs, nix-darwin, disko, home-manager, sops-nix, ... }@inputs: 
+    outputs = { self, nixpkgs, nix-darwin, nix-homebrew, homebrew-core, homebrew-cask, mac-app-util, disko, home-manager, sops-nix, ... }@inputs: 
     let 
         lib = nixpkgs.lib;
         common = [ ./modules/common/configuration.nix ];
@@ -100,12 +113,44 @@
                 };
 		modules = [
                     sops-nix.darwinModules.sops
+			mac-app-util.darwinModules.default
                     home-manager.darwinModules.home-manager
                     {
+			home-manager.sharedModules = [
+                		mac-app-util.homeManagerModules.default
+              		];
                         home-manager.useGlobalPkgs = true;
                         home-manager.useUserPackages = true;
-                        home-manager.users.sebastiaan = import ./modules/home/sebastiaan-darwin.nix;
+                     	users.users.sebastiaan.home = "/Users/sebastiaan";
+			home-manager.users.sebastiaan = import ./modules/home/sebastiaan-darwin.nix;
                     }
+({ config, ... }: {                                                          # <--
+          homebrew.taps = builtins.attrNames config.nix-homebrew.taps;               # <--
+        }) 
+nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            # Install Homebrew under the default prefix
+            enable = true;
+
+            # Apple Silicon Only: Also install Homebrew under the default Intel prefix for Rosetta 2
+            enableRosetta = true;
+
+            # User owning the Homebrew prefix
+            user = "sebastiaan";
+
+            # Optional: Declarative tap management
+            taps = {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+            };
+
+            # Optional: Enable fully-declarative tap management
+            #
+            # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
+            mutableTaps = false;
+          };
+        }
 		    ./modules/machines/apple/macbook-pro/configuration.nix
 		];
     	};

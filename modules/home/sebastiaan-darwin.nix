@@ -1,14 +1,11 @@
 { config, pkgs, ... }:
 
 {
-    home = {
-        username = "sebastiaan";
-    };
-
     # Reference
     # - https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-writeShellApplication
     home.packages = with pkgs; [
-        lazygit
+        rectangle
+	lazygit
         # Cheatsheet
         navi
         # Command runner
@@ -37,14 +34,14 @@
                     shift
                 fi
 
-                cd /home/sebastiaan/vps-nix
+                cd ~/vps-nix
                 git pull
 
                 if $update_secrets; then
                     nix flake update self-secrets
                 fi
 
-                nixos-rebuild switch --flake .;
+                darwin-rebuild switch --flake .;
 
                 if ! git diff --quiet -- flake.lock || ! git diff --cached --quiet -- flake.lock; then
                     git add flake.lock
@@ -60,7 +57,7 @@
                 nix
             ];
             text = ''
-                cd /home/sebastiaan/vps-nix
+                cd ~/vps-nix
                 git pull
                 nix flake update
             '';
@@ -78,6 +75,33 @@
     programs.starship = {
         enable = true;
     };
+
+programs.alacritty = {
+	enable = true;
+};
+
+programs.tmux = {
+	enable = true;
+	extraConfig = ''
+      # update the env when attaching to an existing session
+      set -g update-environment -r
+
+      set -ag terminal-overrides ",alacritty*:Tc,foot*:Tc,xterm-kitty*:Tc,xterm-256color:Tc"
+
+      set -as terminal-features ",alacritty*:RGB,foot*:RGB,xterm-kitty*:RGB"
+      set -as terminal-features ",alacritty*:hyperlinks,foot*:hyperlinks,xterm-kitty*:hyperlinks"
+      set -as terminal-features ",alacritty*:usstyle,foot*:usstyle,xterm-kitty*:usstyle"
+
+# update the env when attaching to an existing session
+set -g update-environment -r
+
+set -ag terminal-overrides ",alacritty*:Tc,foot*:Tc,xterm-kitty*:Tc,xterm-256color:Tc"
+# -- display -------------------------------------------------------------------
+
+set -g base-index 1           # start windows numbering at 1
+setw -g pane-base-index 1     # make pane numbering consistent with windows
+	'';
+};
 
     programs.zsh = {
         enable = true;
