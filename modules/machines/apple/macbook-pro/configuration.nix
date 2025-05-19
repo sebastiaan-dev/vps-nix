@@ -1,6 +1,21 @@
 { inputs, pkgs, ... }:
 {
-	environment.systemPackages = [ pkgs.vim ];
+
+  nixpkgs.overlays = [
+    (final: prev: {
+      unstable = import inputs.nixpkgs-unstable {
+        inherit (final) system config;
+      };
+    })
+  ];
+
+  environment.systemPackages = [
+    pkgs.vim
+    pkgs.unstable.neovim
+    pkgs.devbox
+    pkgs.nerdfonts
+    pkgs.nixfmt-rfc-style
+  ];
 
   homebrew = {
     enable = true;
@@ -11,27 +26,56 @@
       upgrade = true;
     };
 
-	global.autoUpdate = false;
+    global.autoUpdate = false;
 
-casks = [
-"arc"
-"spotify"
-];
-};
-	
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
+    brews = [
+      "bitwarden-cli"
+    ];
 
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
+    casks = [
+      # Spotlight alternative.
+      "raycast"
+      # Browser.
+      "arc"
+      # Music Player.
+      "spotify"
+      # VPN.
+      "tailscale"
+      # Password Manager.
+      "bitwarden"
+      # LLM interface.
+      "chatgpt"
+      # Messaging.
+      "whatsapp"
+      # Open Slack alternative based on Matrix.
+      "element"
+      # Bookmarker.
+      "raindropio"
+      # Discord messaging
+      "discord"
+      # C/C++ IDE
+      "clion"
+    ];
+  };
 
-      # Set Git commit hash for darwin-version.
-      system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+  system.defaults.dock = {
+    autohide = true;
+    tilesize = 48;
+  };
 
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
-      system.stateVersion = 5;
+  # Necessary for using flakes on this system.
+  nix.settings.experimental-features = "nix-command flakes";
 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+  # Enable alternative shell support in nix-darwin.
+  # programs.fish.enable = true;
+
+  # Set Git commit hash for darwin-version.
+  system.configurationRevision = inputs.self.rev or inputs.self.dirtyRev or null;
+
+  # Used for backwards compatibility, please read the changelog before changing.
+  # $ darwin-rebuild changelog
+  system.stateVersion = 5;
+
+  # The platform the configuration will be used on.
+  nixpkgs.hostPlatform = "aarch64-darwin";
 }
