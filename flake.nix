@@ -1,14 +1,15 @@
 {
   # Reference
   # - https://nixos-and-flakes.thiscute.world/
+  # TODO: ~/.config/nix/nix.conf contains access token to prevent GitHub rate limit, make this declared.
 
   description = "NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-25.05";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli/nix-homebrew";
 
@@ -22,14 +23,14 @@
       flake = false;
     };
     mac-app-util.url = "github:hraban/mac-app-util";
-    catppuccin.url = "github:catppuccin/nix";
+    catppuccin.url = "github:catppuccin/nix?rev=751b99dca72c7f9df5475c67dcf1059893564e32";
     # Disk manager
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       # The `follows` keyword in inputs is used for inheritance.
       # Here, `inputs.nixpkgs` of home-manager is kept consistent with
       # the `inputs.nixpkgs` of the current flake,

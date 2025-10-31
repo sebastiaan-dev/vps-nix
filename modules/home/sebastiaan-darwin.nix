@@ -57,6 +57,7 @@
           nix flake update self-secrets
         fi
 
+        # FIXME: Requires root.
         darwin-rebuild switch --flake .;
 
         if ! git diff --quiet -- flake.lock || ! git diff --cached --quiet -- flake.lock; then

@@ -91,7 +91,7 @@
         la = "eza -la --group-directories-first --git";
       };
 
-      initExtra = ''
+      initContent = ''
         export FZF_DEFAULT_COMMAND='batgrep --files --hidden --glob "!.git/*" --glob "!node_modules/*" --ignore-case'
 
         # FZF-Tab only affects ZSH completions
