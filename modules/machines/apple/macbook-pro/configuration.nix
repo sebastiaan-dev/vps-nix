@@ -13,9 +13,14 @@
     pkgs.vim
     pkgs.unstable.neovim
     pkgs.devbox
-    pkgs.nerdfonts
     pkgs.nixfmt-rfc-style
   ];
+
+  fonts = {
+    packages = with pkgs; [
+      nerdfonts
+    ];
+  };
 
   homebrew = {
     enable = true;
@@ -30,6 +35,14 @@
 
     brews = [
       "bitwarden-cli"
+      "openssl@3"
+      "ninja"
+      "ccache"
+      "cmake"
+      "pkg-config"
+      "huggingface-cli"
+      "python"
+      # "codex"
     ];
 
     casks = [
@@ -55,6 +68,19 @@
       "discord"
       # C/C++ IDE
       "clion"
+      # Rust IDE
+      "rustrover"
+      # AI IDE based on VS Code.
+      "windsurf"
+      # Messenger
+      "telegram"
+      # Knowledge base.
+      "obsidian"
+      "moonlight"
+      "ngrok"
+      "arduino-ide"
+      "deluge"
+      "vlc"
     ];
   };
 

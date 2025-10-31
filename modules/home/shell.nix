@@ -142,21 +142,39 @@
         extrakto
       ];
 
+      # Inspiration from:
+      # https://hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
       extraConfig = ''
-        # Increase tmux messages display duration from 750ms to 4s
+        # Less awkward prefix.
+        unbind C-b
+        set-option -g prefix C-space
+        bind-key C-space send-prefix
+
+        # Easier moving between panes.
+        bind -n M-Left select-pane -L
+        bind -n M-Right select-pane -R
+        bind -n M-Up select-pane -U
+        bind -n M-Down select-pane -D
+
+        # Set new panes to open in current directory
+        bind c new-window -c "#{pane_current_path}"
+        bind '"' split-window -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
+
+        # Increase tmux messages display duration from 750ms to 4s.
         set -g display-time 4000
 
-        # Refresh 'status-left' and 'status-right' more often, from every 15s to 5s
+        # Refresh 'status-left' and 'status-right' more often, from every 15s to 5s.
         set -g status-interval 5
 
         # Emacs key bindings in tmux command prompt (prefix + :) are better than
-        # vi keys, even for vim users
+        # vi keys, even for vim users.
         set -g status-keys emacs
 
-        # Focus events enabled for terminals that support them
+        # Focus events enabled for terminals that support them.
         set -g focus-events on
 
-        # Super useful when using "grouped sessions" and multi-monitor setup
+        # Super useful when using "grouped sessions" and multi-monitor setup.
         setw -g aggressive-resize on
 
         set -as terminal-features ",alacritty*:RGB,foot*:RGB,xterm-kitty*:RGB"
@@ -167,8 +185,51 @@
 
         set -ag terminal-overrides ",alacritty*:Tc,foot*:Tc,xterm-kitty*:Tc,xterm-256color:Tc"
 
-        # Source .tmux.conf as suggested in `man tmux`
+        # Source .tmux.conf as suggested in `man tmux`.
         bind R source-file '~/.tmux.conf'
+
+        #### THEMING ####
+        set -g @mocha-rosewater "#ea6962"
+        set -g @mocha-pink      "#d3869b"
+        set -g @mocha-mauve     "#d3869b"
+        set -g @mocha-peach     "#e78a4e"
+        set -g @mocha-yellow    "#d8a657"
+        set -g @mocha-green     "#a9b665"
+        set -g @mocha-teal      "#89b482"
+        set -g @mocha-blue      "#7daea3"
+        set -g @mocha-text      "#ebdbb2"
+        set -g @mocha-subtext0  "#bdae93"
+        set -g @mocha-overlay0  "#595959"
+        set -g @mocha-surface0  "#292929"
+        set -g @mocha-base      "#1d2021"
+        set -g @mocha-mantle    "#191b1c"
+        set -g @mocha-crust     "#141617"
+
+        # ─── status bar ──────────────────────────────────────────────────────────────
+        set -g status-style           "bg=#{@mocha-base},fg=#{@mocha-text}"
+        set -g status-left-style      "bg=#{@mocha-mantle},fg=#{@mocha-peach},bold"
+        set -g status-left            "#[nodim] #S #[default]"
+        set -g status-right-style     "fg=#{@mocha-teal}"
+
+        # ─── windows ─────────────────────────────────────────────────────────────────
+        setw -g window-status-current-style 'fg=black bg=red'
+        setw -g window-status-current-format ' #I #W #F '
+
+        setw -g window-status-style 'fg=red bg=black'
+        setw -g window-status-format ' #I #[fg=white]#W #[fg=yellow]#F '
+
+        setw -g window-status-bell-style 'fg=yellow bg=red bold'
+
+        # ─── pane borders ─────────────────────────────────────────────────────────────
+        set -g pane-border-style        "fg=#{@mocha-overlay0}"
+        set -g pane-active-border-style "fg=#{@mocha-red}"
+
+        # ─── messages (prompts, etc.) ────────────────────────────────────────────────
+        set -g message-style          "bg=#{@mocha-surface0},fg=#{@mocha-text}"
+        set -g message-command-style  "bg=#{@mocha-surface0},fg=#{@mocha-text}"
+
+        # ─── clock mode ──────────────────────────────────────────────────────────────
+        # set -g clock-mode-colour      "#{@mocha-mauve}"
       '';
     };
 
@@ -214,8 +275,108 @@
         };
 
         font = {
-          size = if pkgs.stdenv.isDarwin then 12 else 12;
+          size = if pkgs.stdenv.isDarwin then 13 else 12;
 
+          # Great font options are:
+          # FiraCode, RobotoMono, JetBrainsMono
+          normal = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Regular";
+          };
+          bold = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Bold";
+          };
+          italic = {
+            family = "JetBrainsMono Nerd Font";
+            style = "Italic";
+          };
+        };
+
+        colors = {
+          primary = {
+            background = "#1d2021"; # mocha.base
+            foreground = "#ebdbb2"; # mocha.text
+            dim_foreground = "#928374"; # mocha.overlay1
+            bright_foreground = "#ebdbb2"; # same as text
+          };
+
+          cursor = {
+            text = "#1d2021"; # mocha.base
+            cursor = "#ea6962"; # mocha.rosewater
+          };
+
+          vi_mode_cursor = {
+            text = "#1d2021"; # mocha.base
+            cursor = "#7daea3"; # mocha.blue
+          };
+
+          search = {
+            matches = {
+              foreground = "#1d2021"; # mocha.base
+              background = "#a89984"; # mocha.overlay2
+            };
+
+            focused_match = {
+              foreground = "#1d2021"; # mocha.base
+              background = "#a9b665"; # mocha.green
+            };
+          };
+
+          footer_bar = {
+            foreground = "#1d2021"; # mocha.base
+            background = "#a89984"; # mocha.overlay2
+          };
+
+          hints = {
+            start = {
+              foreground = "#1d2021"; # mocha.base
+              background = "#d8a657"; # mocha.yellow
+            };
+
+            end = {
+              foreground = "#1d2021"; # mocha.base
+              background = "#a89984"; # mocha.overlay2
+            };
+          };
+
+          selection = {
+            text = "#1d2021"; # mocha.base
+            background = "#ea6962"; # mocha.rosewater
+          };
+
+          normal = {
+            black = "#292929"; # mocha.surface0
+            red = "#ea6962"; # mocha.red
+            green = "#a9b665"; # mocha.green
+            yellow = "#d8a657"; # mocha.yellow
+            blue = "#7daea3"; # mocha.blue
+            magenta = "#d3869b"; # mocha.pink
+            cyan = "#89b482"; # mocha.teal
+            white = "#ebdbb2"; # mocha.text
+          };
+
+          bright = {
+            black = "#4d4d4d"; # mocha.surface2
+            red = "#ea6962"; # mocha.red
+            green = "#a9b665"; # mocha.green
+            yellow = "#d8a657"; # mocha.yellow
+            blue = "#7daea3"; # mocha.blue
+            magenta = "#d3869b"; # mocha.pink
+            cyan = "#89b482"; # mocha.teal
+            white = "#a89984"; # mocha.overlay
+          };
+
+          indexed_colors = [
+            {
+              index = 16;
+              color = "#e78a4e"; # mocha.peach
+            }
+            {
+              index = 17;
+              color = "#ea6962"; # mocha.rosewater
+            }
+          ];
         };
       };
     };
@@ -224,14 +385,13 @@
 
   # Theming
   catppuccin = {
-    enable = true;
+    enable = false;
     flavor = "mocha";
 
     fzf.enable = true;
     bat.enable = true;
     starship.enable = true;
-    # zsh-syntax-highlighting.enable = true;
-    tmux.enable = true;
-    alacritty.enable = true;
+    # tmux.enable = true;
+    # alacritty.enable = true;
   };
 }

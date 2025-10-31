@@ -5,6 +5,8 @@
   # Reference
   # - https://ryantm.github.io/nixpkgs/builders/trivial-builders/#trivial-builder-writeShellApplication
   home.packages = with pkgs; [
+    # Fast text search
+    ripgrep
     devenv
     rectangle
     lazygit
@@ -24,6 +26,14 @@
     nnn
     # CLI benchmarking
     hyperfine
+    # CLI Markdown renderer
+    glow
+    zotero
+    # VM/container managers
+    colima
+    docker
+    docker-buildx
+    nmap
     (writeShellApplication {
       name = "rebuild";
       runtimeInputs = [
